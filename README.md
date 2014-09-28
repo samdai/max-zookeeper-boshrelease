@@ -46,7 +46,7 @@ git push origin master --tags
 
 
 ## TODO
-
+*JDK 8 Testing
 
 ## Disclaimer
 
