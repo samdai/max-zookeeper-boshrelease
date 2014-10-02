@@ -63,7 +63,7 @@ resource_pools:
       name: bosh-aws-xen-<%= os %>
       version: latest
     cloud_properties:
-      instance_type: m1.medium
+      instance_type: m1.small
 
 properties:
   zookeeper:
