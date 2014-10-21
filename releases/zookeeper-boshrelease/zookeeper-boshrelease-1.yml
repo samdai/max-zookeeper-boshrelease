@@ -21,7 +21,7 @@ jobs:
   version: b388955b60d88d89bb05ed9fceed67e383154181
   fingerprint: b388955b60d88d89bb05ed9fceed67e383154181
   sha1: 16e959da727ee43177efb58eda1a64f932c7c835
-commit_hash: 36ee684b
+commit_hash: 7a398185
 uncommitted_changes: true
 name: zookeeper-boshrelease
 version: '1'
