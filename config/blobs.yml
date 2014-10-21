@@ -1,1 +1,9 @@
---- {}
+---
+java/jdk-7u67-linux-x64.tar.gz:
+  object_id: cdd65c6d-9c7b-445a-8e24-3fab6833bc3a
+  sha: c1428d338ac60a1b61160f74a45abd74f83e8703
+  size: 142376665
+zookeeper/zookeeper-3.4.6.tar.gz:
+  object_id: caacb185-7561-4234-996d-1187106aa742
+  sha: 2a9e53f5990dfe0965834a525fbcad226bf93474
+  size: 17699306
