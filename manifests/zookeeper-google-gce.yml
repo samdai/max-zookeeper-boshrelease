@@ -50,7 +50,7 @@ jobs:
     instances: <%= num_zookeepers %>
 
     templates:
-      - name: nats
+      - name: zookeeper
         release: latest
 
     resource_pool: vms
