@@ -4,6 +4,15 @@
 <% release_name = "zookeeper-boshrelease" %>
 <% director_uuid = "CHANGE_ME" %>
 ---
+compilation:
+  cloud_properties:
+    machine_type: n1-standard-1
+    root_disk_size_gb: 40
+    root_disk_type: pd-standard
+  network: default
+  reuse_compilation_vms: true
+  workers: 6
+
 name:  <%= deployment_name %>
 director_uuid: <%= director_uuid %>
 
