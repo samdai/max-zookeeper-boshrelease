@@ -4,6 +4,7 @@
 <% release_name = "zookeeper-boshrelease" %>
 <% director_uuid = "CHANGE_ME" %>
 ---
+name:  <%= deployment_name %>
 director_uuid: <%= director_uuid %>
 
 resource_pools:
