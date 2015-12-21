@@ -51,7 +51,7 @@ jobs:
 
     templates:
       - name: zookeeper
-        release: latest
+        release: <%= release_name %>
 
     resource_pool: vms
     persistent_disk_pool: disks
