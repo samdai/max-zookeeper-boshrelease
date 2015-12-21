@@ -1,5 +1,5 @@
 <% num_zookeepers = 3 %>
-<% deployment_name = "zookeeper-aws-vpc" %>
+<% deployment_name = "zookeeper-google-gce" %>
 <% tld = "microbosh" %>
 <% release_name = "zookeeper-boshrelease" %>
 <% director_uuid = "CHANGE_ME" %>
