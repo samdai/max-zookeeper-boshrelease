@@ -36,7 +36,7 @@ jobs:
       zookeeper:
         servers:
           <% num_zookeepers.times do |i| %>
-            <%= "- #{i}.zookeeper.default.#{deployment_name}.#{tld}\n" %>
+            <%= "- #{i}.zookeeper.private.#{deployment_name}.#{tld}\n" %>
           <% end %>
 
 meta:
