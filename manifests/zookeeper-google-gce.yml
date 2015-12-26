@@ -7,10 +7,8 @@
 
 compilation:
   cloud_properties:
-     machine_type: n1-standard-1
-     root_disk_size_gb: 40
-     root_disk_type: pd-standard
-  network: default
+     machine_type: n1-highcpu-2
+  network: private
   reuse_compilation_vms: true
   workers: 6
 name:  <%= deployment_name %>
@@ -28,9 +26,11 @@ jobs:
 
     networks:
       - name: private
-        default:
-          - dns
-          - gateway
+        type: dynamic
+        cloud_properties:
+          network_name: default
+          tags:
+            - zookeeper
 
     properties:
       zookeeper:
@@ -50,6 +50,8 @@ networks:
     type: dynamic
     cloud_properties:
       network_name: default
+      ephemeral_external_ip: false
+      ip_forwarding: false
       tags:
         - zookeeper
 
