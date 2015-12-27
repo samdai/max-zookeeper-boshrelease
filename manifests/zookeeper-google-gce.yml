@@ -4,28 +4,15 @@
 <% release_name = "zookeeper-boshrelease" %>
 <% director_uuid = "CHANGE_ME" %>
 ---
-<<<<<<< HEAD
-
-compilation:
-  cloud_properties:
-     machine_type: n1-highcpu-2
-  network: private
-=======
 compilation:
   cloud_properties:
      machine_type: n1-highcpu-2
   network: default
->>>>>>> 8d66518ac68cdd53070926d8e7f69bf28819c015
   reuse_compilation_vms: true
   workers: 6
 name:  <%= deployment_name %>
 director_uuid: <%= director_uuid %>
 
-<<<<<<< HEAD
-jobs:
-  - name: zookeeper
-    instances: <%= num_zookeepers %> 
-=======
 resource_pools:
   - name: vms
     network: default
@@ -58,30 +45,12 @@ networks:
 jobs:
   - name: zookeeper
     instances: <%= num_zookeepers %>
->>>>>>> 8d66518ac68cdd53070926d8e7f69bf28819c015
 
     templates:
       - name: zookeeper
         release: <%= release_name %>
 
     resource_pool: vms
-<<<<<<< HEAD
-
-    networks:
-      - name: private
-        type: dynamic
-        cloud_properties:
-          network_name: default
-          tags:
-            - zookeeper
-
-    properties:
-      zookeeper:
-        servers:
-          <% num_zookeepers.times do |i| %>
-            <%= "- #{i}.zookeeper.private.#{deployment_name}.#{tld}\n" %>
-          <% end %>
-=======
     persistent_disk_pool: disks
 
     networks:
@@ -97,48 +66,20 @@ jobs:
         <% num_zookeepers.times do |i| %>
         <%= "- #{i}.zookeeper.default.#{deployment_name}.#{tld}\n" %>
         <% end %>
->>>>>>> 8d66518ac68cdd53070926d8e7f69bf28819c015
 
 meta:
   environment: <%= deployment_name %>
   stemcell:
     name: bosh-google-kvm-ubuntu-trusty-go_agent
-<<<<<<< HEAD
-    version: latest
-
-networks:
-  - name: private
-    type: dynamic
-    cloud_properties:
-      network_name: default
-      ephemeral_external_ip: false
-      ip_forwarding: false
-      tags:
-        - zookeeper
-=======
     version: 3153
->>>>>>> 8d66518ac68cdd53070926d8e7f69bf28819c015
 
 releases:
 - name: <%= release_name %>
   version: latest
 
-<<<<<<< HEAD
-resource_pools:
-  - name: vms
-    network: private
-    stemcell:
-      name: bosh-google-kvm-ubuntu-trusty-go_agent
-      version: latest
-    cloud_properties:
-      machine_type: g1-small
-      root_disk_size_gb: 10
-      root_disk_type: pd-standard
-
-=======
->>>>>>> 8d66518ac68cdd53070926d8e7f69bf28819c015
 update:
   canaries: 1
   canary_watch_time: 1000-30000
   max_in_flight: 50
   update_watch_time: 1000-30000
+
