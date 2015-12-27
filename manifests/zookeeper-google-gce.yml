@@ -7,7 +7,7 @@
 compilation:
   cloud_properties:
      machine_type: n1-highcpu-2
-  network: private
+  network: default
   reuse_compilation_vms: true
   workers: 6
 name:  <%= deployment_name %>
@@ -15,7 +15,7 @@ director_uuid: <%= director_uuid %>
 
 resource_pools:
   - name: vms
-    network: private
+    network: default
     stemcell:
       name: bosh-google-kvm-ubuntu-trusty-go_agent
       version: 3153
@@ -31,7 +31,7 @@ disk_pools:
       type: pd-standard
 
 networks:
-  - name: private
+  - name: default
     type: dynamic
     cloud_properties:
       network_name: default
@@ -54,7 +54,7 @@ jobs:
     persistent_disk_pool: disks
 
     networks:
-      - name: private
+      - name: default
         default:
           - dns
           - gateway
