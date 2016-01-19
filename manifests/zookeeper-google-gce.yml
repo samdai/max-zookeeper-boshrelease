@@ -13,35 +13,6 @@ compilation:
 name:  <%= deployment_name %>
 director_uuid: <%= director_uuid %>
 
-resource_pools:
-  - name: vms
-    network: default
-    stemcell:
-      name: bosh-google-kvm-ubuntu-trusty-go_agent
-      version: 3153
-    cloud_properties:
-      machine_type: n1-standard-1
-      root_disk_size_gb: 40
-      root_disk_type: pd-standard
-
-disk_pools:
-  - name: disks
-    disk_size: 32_768
-    cloud_properties:
-      type: pd-standard
-
-networks:
-  - name: default
-    type: dynamic
-    cloud_properties:
-      network_name: default
-      tags:
-        - bosh
-
-  - name: public
-    type: vip
-
-
 jobs:
   - name: zookeeper
     instances: <%= num_zookeepers %>
@@ -51,35 +22,54 @@ jobs:
         release: <%= release_name %>
 
     resource_pool: vms
-    persistent_disk_pool: disks
 
     networks:
       - name: default
-        default:
-          - dns
-          - gateway
-      - name: public
+        type: dynamic
+        cloud_properties:
+          network_name: default
+          tags:
+            - zookeeper
 
     properties:
       zookeeper:
-      servers:
-        <% num_zookeepers.times do |i| %>
-        <%= "- #{i}.zookeeper.default.#{deployment_name}.#{tld}\n" %>
-        <% end %>
+        servers:
+          <% num_zookeepers.times do |i| %>
+            <%= "- #{i}.zookeeper.default.#{deployment_name}.#{tld}\n" %>
+          <% end %>
 
 meta:
   environment: <%= deployment_name %>
   stemcell:
     name: bosh-google-kvm-ubuntu-trusty-go_agent
-    version: 3153
+    version: latest
+
+networks:
+  - name: default
+    type: dynamic
+    cloud_properties:
+      network_name: default
+      ephemeral_external_ip: false
+      ip_forwarding: false
+      tags:
+        - zookeeper
 
 releases:
 - name: <%= release_name %>
   version: latest
 
+resource_pools:
+  - name: vms
+    network: default
+    stemcell:
+      name: bosh-google-kvm-ubuntu-trusty-go_agent
+      version: latest
+    cloud_properties:
+      machine_type: f1-micro
+      root_disk_size_gb: 10
+      root_disk_type: pd-standard
+
 update:
   canaries: 1
   canary_watch_time: 1000-30000
   max_in_flight: 50
-  update_watch_time: 1000-30000
-
