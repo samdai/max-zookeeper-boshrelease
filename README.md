@@ -13,36 +13,13 @@ Take a look at the manifests directory for sample deployment manifests. Edit req
 
 To build:
 
-1. Run `git clone https://github.com/murraju/zookeeper-boshrelease`
+1. Run `git clone https://github.com/samdai/max-zookeeper-boshrelease`
 2. `cd zookeeper-boshrelease`
-3. Run `bosh create release`
+3. Run `bosh create release --force`
 4. Run `bosh upload release`
-5. Run `bosh deployment sample_manifest.yml`
+5. Run `templates/make_manifest warden`
 6. Run `bosh -n deploy`.
 7. Run `bosh vms` to list VMs and IPs.
-
-## Create new final release
-
-Create a `config/private.yml` file with the following contents:
-
-``` yaml
----
-blobstore:
-  s3:
-    access_key_id:     ACCESS
-    secret_access_key: PRIVATE
-    bucke_name: BUCKET
-```
-
-```
-bosh create release
-# To test
-git commit -m "updated spark release"
-bosh create release --final
-git commit -m "creating vN release"
-git tag vN
-git push origin master --tags
-```
 
 
 ## TODO
@@ -50,7 +27,7 @@ git push origin master --tags
 
 ## Disclaimer
 
-This is a development release and a work in progress. Please log issues. This release has been tested against AWS EC2 and OpenStack BOSH CPIs (Cloud Provider Interface).
+This is a development release and a work in progress. Please log issues. This release has been tested against AWS EC2
 
 ## Copyright and Credits
 
